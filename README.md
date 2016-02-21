@@ -25,7 +25,7 @@ Add as a dependency to your application:
 
 Add directive to your HTML:
 
-`<angular-feedback options="options"></angular-feedback>`
+`<angular-feedback options="options" meta="meta"></angular-feedback>`
 
 The options attribute is connected to a `$scope` value in your controller, you can use this object to change/modify any of the options listed below.
 
@@ -38,6 +38,7 @@ The information from the client will be sent through ajax post request. The info
 * `post.note` - Description of the feedback.
 * `post.img` - The screenshot of the feedback. - **base64 encoded data URI!**
 * `post.html` - The structure of the page.
+* `post.meta` - Meta data object
 
 ## Options
 
@@ -118,12 +119,6 @@ Sets the type of corner created, when two lines meet.
 Sets border of the highlighted area.
 
 `Default: 3`
-
-### html2canvasURL (String)
-
-The URL where the plugin can download html2canvas.js from.
-
-`Default: html2canvas.js`
 
 ### tpl.description / tpl.highlighter / tpl.overview / tpl.submitSuccess / tpl.submitError (String / HTML)
 

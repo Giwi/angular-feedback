@@ -6,16 +6,14 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
         replace: true,
         transclude: true,
         scope: {
-            options : '='
+            options : '=',
+            meta : '='
         },
-        //templateUrl: function(element, attributes) {
-          //return attributes.template || "angularsendfeedback.html";
-        //},
-        link: function($scope, $element, $attrs) {
+        link: function($scope) {
 
             (function($){
 
-                $.feedback = function(options) {
+                $.feedback = function(options, meta) {
 
                     var settings = $.extend({
                             ajaxURL:                '',
@@ -32,7 +30,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                             shadowBlur:             10,
                             lineJoin:               'bevel',
                             lineWidth:              3,
-                            html2canvasURL:         'html2canvas.js',
                             feedbackButton:         '.feedback-btn',
                             showDescriptionModal:   true,
                             isDraggable:            true,
@@ -59,11 +56,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                             $(document).on('click', settings.feedbackButton, function(){
                                 if(isFeedbackButtonNative) {
                                     $(this).hide();
-                                }
-                                if (!_html2canvas) {
-                                    $.getScript(settings.html2canvasURL, function() {
-                                        _html2canvas = true;
-                                    });
                                 }
                                 var canDraw = false,
                                     img = '',
@@ -159,6 +151,9 @@ angular.module('angular-send-feedback').directive('angularFeedback', [ function(
                                     post.browser.platform       = navigator.platform;
                                     post.browser.userAgent      = navigator.userAgent;
                                     post.browser.plugins        = [];
+                                    if(!!meta) {
+                                        post.meta = meta;
+                                    }
 
                                     $.each(navigator.plugins, function(i) {
                                         post.browser.plugins.push(navigator.plugins[i].name);
