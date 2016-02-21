@@ -1,6 +1,6 @@
 {
   "name": "angular-send-feedback",
-  "version": "1.0.4",
+  "version": "1.0.3",
   "main": [
     "./dist/angular-send-feedback.min.js",
     "./dist/angular-send-feedback.min.css"
